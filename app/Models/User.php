@@ -24,6 +24,7 @@ class User extends Authenticatable
 		'booked_on',
 		'admin',
 		'coming_from',
+		'can_host',
 	];
 
 	/**
@@ -31,11 +32,6 @@ class User extends Authenticatable
 	 *
 	 * @var array<int, string>
 	 */
-
-	protected $hidden =
-	[
-		'log_in_token'
-	];
 
 	/**
 	 * The attributes that should be cast.
@@ -45,4 +41,9 @@ class User extends Authenticatable
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 	];
+
+	public function tokens()
+	{
+		return $this->hasMany(Token::class);
+	}
 }

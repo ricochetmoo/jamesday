@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvitesTable extends Migration
+class CreateTokensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateInvitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invites', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->nullable();
-            $table->integer('token');
+            $table->string('token');
+            $table->integer('user_id');
+            $table->boolean('used')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateInvitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invites');
+        Schema::dropIfExists('tokens');
     }
 }

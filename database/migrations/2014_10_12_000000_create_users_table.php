@@ -17,10 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->boolean('booked_on');
-            $table->boolean('admin');
+            $table->boolean('booked_on')->default(0);
+            $table->boolean('admin')->default(0);
             $table->string('coming_from');
-            $table->string('log_in_token');
+            $table->integer('can_host')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

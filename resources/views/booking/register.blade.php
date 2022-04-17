@@ -1,0 +1,1 @@
+{{$invite->first_name}}

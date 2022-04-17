@@ -5,15 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invite extends Model
+class Token extends Model
 {
 	use HasFactory;
 
 	protected $fillable =
 	[
-		'token',
-		'first_name',
-		'last_name',
-		'email'
+		'user_id',
+		'used',
 	];
+	
+	protected $hidden =
+	[
+		'token',
+	];
+
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 }
