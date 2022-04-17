@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\InviteController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,12 @@ use App\Http\Controllers\InviteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/logout', function(){Auth::guard()->logout(); return redirect('/');})->name('logout');
+Route::get('/auth/login', function(){return view('auth.requestLink');})->name('login');
+Route::post('/auth/login', [UserController::class, 'sendMagicLink']);
+Route::get('/auth/token/{token}', [UserController::class, 'login']);
 
+Route::get('/', function() {return view('dashboard');})->middleware(['auth'])->name('dashboard');
+Route::get('/invite', function() {return view('booking.code');});
 Route::get('/invite/{token}', [InviteController::class, 'checkAndRedirect']);
+Route::post('/auth/register', [UserController::class, 'register']);

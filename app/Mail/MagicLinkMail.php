@@ -18,9 +18,13 @@ class MagicLinkMail extends Mailable
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($firstName, $token)
     {
-        $this->details = $details;
+        $this->details =
+        [
+            'first_name' => $firstName,
+            'token' => $token
+        ];
     }
 
     /**
@@ -30,6 +34,6 @@ class MagicLinkMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Log in to Jamesday')->view('mail.magicLink');
+        return $this->subject('Log in to Jamesday')->view('mail.magicLink')->with('details', $this->details);
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Mail\MaigcLinkMail;
+use App\Mail\MagicLinkMail;
+use App\Mail\BookingConfirmationMail;
 
 class UserController extends Controller
 {
@@ -24,49 +25,67 @@ class UserController extends Controller
 		{
 			die('Invalid invite');
 		}
+
+		if ($invite->used)
+		{
+			die('Invite already used');
+		}
 		
 		$user = new User();
 		$user->first_name = $request->first_name;
-		$user->last_name = $reqeust->last_name;
-		$user->email = $reqeust->email;
-		$user->can_host = $reqeust->can_host;
+		$user->last_name = $request->last_name;
+		$user->email = $request->email;
+		$user->can_host = $request->can_host;
 		$user->booked_on = true;
 		$user->coming_from = $request->coming_from;
 
 		$user->save();
 
-		InviteController::delete($invite);
+		InviteController::markAsUsed($invite);
 
-		Auth::login($user);
+		\Auth::login($user);
 
-		return redirect('dashboard');
+		\Mail::to($request->email)->send(new BookingConfirmationMail($request));
+
+		return redirect('/');
 	}
 
-	function sendMagicLink($email)
+	function sendMagicLink(Request $request)
 	{
-		if ($user = User::where('email', $email)->first())
+		if ($user = User::where('email', $request->email)->first())
 		{
-			TokenController::generate();
+			$token = TokenController::generate($user);
 			
-			Mail::to($email)->send(new MagicLinkMail($first_name, $token));
+			\Mail::to($user->email)->send(new MagicLinkMail($user->first_name, $token->token));
 		}
 		else
 		{
-			die('No user found');
+			return view('error')->with('message', "There is no account registered with this email address.");
 		}
+
+		return view('auth.linkSentConfirmation');
 	}
 
-	function logIn($user, $tokenString)
+	function logIn($tokenString)
 	{
 		if ($token = TokenController::find($tokenString))
 		{
-			if ($token->user == $user)
+			if (!$token->used)
 			{
 				TokenController::markAsUsed($token);
-				Auth::login($user);
+				\Auth::login($token->user);
 
-				return redirect('dashboard');
+				return redirect('/');
 			}
+			else
+			{
+				return view('error')->with('message', "This is not a valid token.");	
+			}
+
+		}
+		else
+		{
+			return view('error')->with('message', "This is not a valid token.");
 		}
 	}
 }

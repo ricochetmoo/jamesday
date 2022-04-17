@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Token;
+
 class TokenController extends Controller
 {
 	public static function exists($tokenString)
@@ -27,9 +29,9 @@ class TokenController extends Controller
 			
 		while(!$unique)
 		{
-			$tokenString = base64_encode(random_int());
+			$tokenString = base64_encode(random_int(PHP_INT_MIN, PHP_INT_MAX));
 
-			if (!exists($tokenString))
+			if (!TokenController::exists($tokenString))
 			{
 				$unique = true;
 			}

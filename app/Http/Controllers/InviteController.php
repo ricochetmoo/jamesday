@@ -28,6 +28,7 @@ class InviteController extends Controller
 		$invite->last_name = $request->last_name;
 		$invite->email = $request->email;
 		$invite->token = $token;
+		$invite->used = false;
 
 		$invite->save();
 	}
@@ -36,11 +37,18 @@ class InviteController extends Controller
 	{
 		if ($invite = InviteController::find($token))
 		{
-			return view('booking.register')->with('invite', $invite);
+			if (!$invite->used)
+			{
+				return view('booking.register')->with('invite', $invite);
+			}
+			else
+			{
+				return view('error')->with('message', "This invite has already been used.");
+			}
 		}
 		else
 		{
-			die('Invalid invite');
+			return view('error')->with('message', "Invalid invite.");
 		}
 	}
 
@@ -49,8 +57,9 @@ class InviteController extends Controller
 		return Invite::where('token', $token)->first();
 	}
 
-	public static function delete($invite)
+	public static function markAsUsed($invite)
 	{
-		$invite->delete();
+		$invite->used = true;
+		$invite->save();
 	}
 }

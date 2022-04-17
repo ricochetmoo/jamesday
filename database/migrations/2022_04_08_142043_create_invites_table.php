@@ -18,6 +18,7 @@ class CreateInvitesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->nullable();
+            $table->boolean('used')->default(0);
             $table->integer('token');
             $table->timestamps();
         });
