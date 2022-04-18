@@ -46,7 +46,7 @@
 		event.preventDefault();
 		let token = event.target.dataset.token;
 		
-		let text = "Hey! You're invited to the 2022 Jamesday Celebrations in Liverpool on 11/06/2022. Find out more and register at https://{{url('/')}}/invite/" + token + " (don't share this link with anyone else, as it only work for you! You can add a plus one on the system)";
+		let text = "Hey! You're invited to the 2022 Jamesday Celebrations in Liverpool on 11/06/2022. Find out more and register at {{url('/')}}/invite/" + token + " (don't share this link with anyone else, as it only work for you! You can add a plus one on the system)";
 
 		navigator.clipboard.writeText(text);
 	}
