@@ -5,6 +5,12 @@
 				Jamesday 2022
 			</h2>
 		</div>
+		<div class="inline-block mx-3">
+			<a class="block bg-indigo-700 rounded px-4 py-2 font-bold text-white hover:bg-indigo-500 transition text-lg text-center" href="{{url('/admin/invites')}}">Back to List</a>
+		</div>
+		<div class="inline-block">
+			<a class="font-medium" href="{{url('/logout')}}">Log out</a>
+		</div>
 	</x-slot>
 
 	<h1 class="text-5xl text-center font-bold mt-6">Create a new invite</h1>

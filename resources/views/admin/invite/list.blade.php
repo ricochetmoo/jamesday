@@ -6,7 +6,7 @@
 			</h2>
 		</div>
 		<div class="inline-block mx-3">
-			<a class="bg-indigo-700 rounded px-4 py-3 font-bold text-white hover:bg-indigo-500 transition text-lg" href="{{url('/')}}/admin/invite">New Invite</a>
+			<a class="block bg-indigo-700 rounded px-4 py-2 font-bold text-white hover:bg-indigo-500 transition text-lg text-center" href="{{url('/admin/invite')}}">New Invite</a>
 		</div>
 		<div class="inline-block">
 			<a class="font-medium" href="{{url('/logout')}}">Log out</a>
