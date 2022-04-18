@@ -16,11 +16,19 @@ class InviteController extends Controller
 
 	public static function generate(Request $request)
 	{
+		$request->validate
+		([
+			'first_name' => 'required|string',
+			'last_name' => 'required|string',
+			'email' => 'nullable|email',
+			'token' => 'required|integer|digits:6'
+		]);
+		
 		$unique = false;
 
 		while (!$unique)
 		{
-			$token = random_int(0, 999999);
+			$token = random_int(100000, 999999);
 
 			if (!Invite::where('token', $token)->first())
 			{

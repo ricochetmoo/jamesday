@@ -21,6 +21,15 @@ class UserController extends Controller
 
 	function register(Request $request)
 	{
+		$request->validate
+		([
+			'first_name' => 'required|string',
+			'last_name' => 'required|string',
+			'email' => 'required|email',
+			'can_host' => 'nullable|integer',
+			'coming_from' => 'required|string',
+		]);
+		
 		if (!$invite = InviteController::find($request->invite_token))
 		{
 			die('Invalid invite');
@@ -52,6 +61,11 @@ class UserController extends Controller
 
 	function sendMagicLink(Request $request)
 	{
+		$request->validate
+		([
+			'email' => 'required|email'
+		]);
+
 		if ($user = User::where('email', $request->email)->first())
 		{
 			$token = TokenController::generate($user);
