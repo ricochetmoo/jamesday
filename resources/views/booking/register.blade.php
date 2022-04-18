@@ -47,11 +47,11 @@
 				<span class="text-gray-500">We're not asking for a firm commitment at this stage, but please let us know if it's a possiblity. You'll get a free drink for each person you host!</span>
 				<div class="grid md:grid-cols-2 gap-6 my-3">
 					<label class="inline-flex items-center">
-						<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm                           focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="hostYes" name="host" value="yes">
+						<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="hostYes" name="host" value="yes">
 						<span class="ml-2">Yes</span>
 					</label>
 					<label class="inline-flex items-center">
-						<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm                           focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="hostNo" name="host" value="no" checked>
+						<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="hostNo" name="host" value="no" checked>
 						<span class="ml-2">No</span>
 					</label>
 				</div>
