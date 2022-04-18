@@ -56,6 +56,10 @@ class UserController extends Controller
 
 		\Mail::to($request->email)->send(new BookingConfirmationMail($request));
 
+		$canHost = ($request->can_host) ? $request->can_host : 0;
+
+		DiscordBotController::sendMessage("New user $request->first_name $request->last_name ($request->email) registered.\nTravelling from: $request->coming_from. Can host: $canHost.");
+
 		return redirect('/');
 	}
 
