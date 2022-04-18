@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Invite;
+use App\Mail\InviteMail;
 
 class InviteController extends Controller
 {
@@ -21,7 +22,6 @@ class InviteController extends Controller
 			'first_name' => 'required|string',
 			'last_name' => 'required|string',
 			'email' => 'nullable|email',
-			'token' => 'required|integer|digits:6'
 		]);
 		
 		$unique = false;
@@ -45,6 +45,13 @@ class InviteController extends Controller
 		$invite->used = false;
 
 		$invite->save();
+
+		if ($request->send_email == "yes")
+		{
+			\Mail::to($request->email)->send(new InviteMail($request->first_name, $request->token));
+		}
+
+		return redirect('/admin/invites');
 	}
 	
 	public static function checkAndRedirect($token)
