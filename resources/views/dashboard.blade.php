@@ -17,7 +17,7 @@
 		<p class="mt-3">The Jamesday Celebrations 2022 will be taking place at <span class="font-medium">Subrosa Liverpool</span> in the evening of <span class="font-medium">Saturday 11/06/2022</span>. For those travelling to the event, a variety of accommodation will be available ranging from space on someone's floor (free) to nearby hotels.</p>
 		<p class="mt-2">The venue is conveniently located for both public transport and driving, with parking available minutes away from the venue. Further details about transport logistics will be made avaialable in the coming fortnight.</p>
 
-		<h3 class="mt-16 text-3xl text-center font-bold">Your Booking</h3>
+		<h3 class="mt-16 text-3xl text-center font-bold">Your Registration</h3>
 	</div>
 
 	<div class="max-w-xl mx-auto rounded-md bg-gray-100 shadow-indigo-300 shadow-lg p-6 mt-6">
@@ -40,6 +40,6 @@
 	</div>
 
 	<div class="max-w-xl mx-auto">
-		<p class="mt-9">Please get in touch with James (<a href="mailto:james@jamesbarber.tech" class="text-indigo-700 hover:underline decoration-dashed">james@jamesbarber.tech</a>) to update your booking.</p>
+		<p class="mt-9">Please get in touch with James (<a href="mailto:james@jamesbarber.tech" class="text-indigo-700 hover:underline decoration-dashed">james@jamesbarber.tech</a>) to update your registration.</p>
 	</div>
 </x-app-layout>
