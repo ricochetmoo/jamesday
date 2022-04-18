@@ -20,7 +20,7 @@
 		<h3 class="mt-16 text-3xl text-center font-bold">Your Booking</h3>
 	</div>
 
-	<div class="max-w-xl mx-auto rounded-md shadow-indigo-300 shadow-lg p-6 mt-6">
+	<div class="max-w-xl mx-auto rounded-md bg-gray-100 shadow-indigo-300 shadow-lg p-6 mt-6">
 		<p>
 			<span class="text-gray-700 font-bold">Name</span><br>
 			{{Auth::user()->first_name}} {{Auth::user()->last_name}}
