@@ -48,7 +48,7 @@ class InviteController extends Controller
 
 		if ($request->send_email == "yes")
 		{
-			\Mail::to($request->email)->send(new InviteMail($request->first_name, $request->token));
+			\Mail::to($request->email)->send(new InviteMail($request->first_name, $token));
 		}
 
 		return redirect('/admin/invites');
