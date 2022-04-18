@@ -25,3 +25,5 @@ Route::get('/', function() {return view('dashboard');})->middleware(['auth'])->n
 Route::get('/invite', function() {return view('booking.code');});
 Route::get('/invite/{token}', [InviteController::class, 'checkAndRedirect']);
 Route::post('/auth/register', [UserController::class, 'register']);
+
+Route::get('/admin/invite', function() {return view('admin.invites')->with('invites', InviteController::index());})->middleware(['auth', 'admin']);

@@ -8,6 +8,12 @@ use App\Models\Invite;
 
 class InviteController extends Controller
 {
+	public static function index()
+	{
+		return Invite::all();
+	}
+	
+
 	public static function generate(Request $request)
 	{
 		$unique = false;
