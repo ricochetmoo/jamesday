@@ -8,7 +8,7 @@
 	<p><b>Name:</b> {{$details->first_name}} {{$details->last_name}}</p>
 	<p><b>Email:</b> {{$details->email}}</p>
 	<p><b>Travelling from:</b> {{$details->coming_from}}</p>
-	<p><b>Can host?</b> @if($details->host) Yes ({{$details->can_host}}) @else No @endif</p>
+	<p><b>Can host?</b> @if($details->can_host) Yes ({{$details->can_host}}) @else No @endif</p>
 
 	<p>If anything's wrong, please get in touch with James at <a href="mailto:james@jamesbarber.tech">james@jamesbarber.tech</a>.</p>
 
