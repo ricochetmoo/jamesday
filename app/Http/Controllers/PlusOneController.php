@@ -54,4 +54,36 @@ class PlusOneController extends Controller
 
 		return redirect('/');
 	}
+
+	public static function accept($id)
+	{	
+		$plusOne = PlusOneController::find($id);
+		
+		if ($plusOne->status != "requested")
+		{
+			return view('error')->with('message', "This plus one request has already been responded to.");
+		}
+		
+		InviteController::generateFromAttributes($plusOne->first_name, $plusOne->last_name, $plusOne->email);
+
+		$plusOne->status = "accepted";
+		$plusOne->save();
+
+		return redirect('/admin/plusones');
+	}
+
+	public static function reject($id)
+	{
+		$plusOne = PlusOneController::find($id);
+		
+		if ($plusOne->status != "requested")
+		{
+			return view('error')->with('message', "This plus one request has already been responded to.");
+		}
+
+		$plusOne->status = "rejected";
+		$plusOne->save();
+
+		return redirect('/admin/plusones');
+	}
 }

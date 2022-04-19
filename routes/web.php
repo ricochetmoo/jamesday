@@ -6,6 +6,8 @@ use App\Http\Controllers\InviteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlusOneController;
 
+use App\Models\PlusOne;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +35,5 @@ Route::post('/plusone', [PlusOneController::class, 'request'])->middleware(['aut
 Route::get('/admin/invites', function() {return view('admin.invite.list')->with('invites', InviteController::index());})->middleware(['auth', 'admin']);
 Route::get('/admin/invite', function() {return view('admin.invite.new');})->middleware(['auth', 'admin']);
 Route::post('/admin/invite', [InviteController::class, 'generate'])->middleware(['auth', 'admin']);
+Route::get('/admin/plusone/{plusOne}/accept', [PlusOneController::class, 'accept'])->middleware(['auth', 'admin']);
+Route::get('/admin/plusone/{plusOne}/reject', [PlusOneController::class, 'reject'])->middleware(['auth', 'admin']);
