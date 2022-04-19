@@ -5,7 +5,7 @@
 
 	<p>Use the magic link below to log in to Jamesday 2022. If you didn't request this, don't worry, soemone probably made a mistake.</p>
 
-	<a href="{{url('/')}}/auth/token/{{urlencode($details['token'])}}">{{url('/')}}/auth/token/{{urlencode($details['token'])}}</a>
+	<a href="{{url('/')}}/auth/token/{{$details['token']}}">{{url('/')}}/auth/token/{{$details['token']}}</a>
 
 	<p>If anything's wrong, please get in touch with James at <a href="mailto:james@jamesbarber.tech">james@jamesbarber.tech</a>.</p>
 
