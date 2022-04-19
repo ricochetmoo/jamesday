@@ -56,10 +56,16 @@
 					</label>
 				</div>
 			</label>
-			<label class="block my-3 hidden" id="hostDetails">
-				<span class="text-gray-700 font-medium">How many people can you host?</span><br>
-				<input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="can_host" placeholder="">
-			</label>
+			<div id="hostDetails" class="hidden">
+				<label class="block my-3">
+					<span class="text-gray-700 font-medium">How many people can you host?</span><br>
+					<input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="can_host" placeholder="">
+				</label>
+				<label class="block my-3">
+					<span class="text-gray-700 font-medium">Any other information about how you can host</span>
+					<textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" rows="3" name="hosting_details"></textarea>
+				</label>
+			</div>
 
 			<h3 class="text-3xl text-center font-bold mt-9">More Information</h3>
 			<p class="mt-3">We'll need some more information from you closer to the time, but we'll be in touch via the email address you provide to let you know how to get this to us.</p>

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('admin')->default(0);
             $table->string('coming_from');
             $table->integer('can_host')->nullable();
+            $table->longText('hosting_details')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

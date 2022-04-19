@@ -25,6 +25,7 @@ class User extends Authenticatable
 		'admin',
 		'coming_from',
 		'can_host',
+		'hosting_details',
 	];
 
 	/**

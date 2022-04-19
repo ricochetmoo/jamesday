@@ -27,6 +27,7 @@ class UserController extends Controller
 			'last_name' => 'required|string',
 			'email' => 'required|email',
 			'can_host' => 'nullable|integer',
+			'hosting_details' => 'nullable|string',
 			'coming_from' => 'required|string',
 		]);
 		
@@ -45,6 +46,7 @@ class UserController extends Controller
 		$user->last_name = $request->last_name;
 		$user->email = $request->email;
 		$user->can_host = $request->can_host;
+		$user->hosting_details = $request->hosting_details;
 		$user->booked_on = true;
 		$user->coming_from = $request->coming_from;
 
