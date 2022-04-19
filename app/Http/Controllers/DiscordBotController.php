@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class DiscordBotController extends Controller
 {
-	function sendMessage($message)
+	public static function sendMessage($message)
 	{
 		$content =
 		[

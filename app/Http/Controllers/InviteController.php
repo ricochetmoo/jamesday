@@ -53,6 +53,33 @@ class InviteController extends Controller
 
 		return redirect('/admin/invites');
 	}
+
+	public static function generateFromAttributes($first_name, $last_name, $email)
+	{
+		$unique = false;
+
+		while (!$unique)
+		{
+			$token = random_int(100000, 999999);
+
+			if (!Invite::where('token', $token)->first())
+			{
+				$unique = true;
+			}
+		}
+
+		$invite = new Invite();
+
+		$invite->first_name = $first_name;
+		$invite->last_name = $last_name;
+		$invite->email = $email;
+		$invite->token = $token;
+		$invite->used = false;
+
+		$invite->save();
+
+		\Mail::to($email)->send(new InviteMail($first_name, $token));
+	}
 	
 	public static function checkAndRedirect($token)
 	{

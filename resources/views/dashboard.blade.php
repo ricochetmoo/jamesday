@@ -17,6 +17,37 @@
 		<p class="mt-3">The Jamesday Celebrations 2022 will be taking place at <span class="font-medium">Subrosa Liverpool</span> in the evening of <span class="font-medium">Saturday 11/06/2022</span>. For those travelling to the event, a variety of accommodation will be available ranging from space on someone's floor (free) to nearby hotels.</p>
 		<p class="mt-2">The venue is conveniently located for both public transport and driving, with parking available minutes away from the venue. Further details about transport logistics will be made avaialable in the coming fortnight.</p>
 
+		<h3 class="mt-16 text-3xl text-center font-bold">Your Plus ones</h3>
+
+		@if (Auth::user()->plus_ones->first())
+		<div class="max-w mt-6 overflow-x-auto">
+			<table class="table-auto mx-auto">
+				<thead>
+					<tr>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">First Name</th>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Last Name</th>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach(Auth::user()->plus_ones as $plusOne)
+					<tr class="even:bg-indigo-100">
+						<td class="px-4 py-2 text-black text-left">{{$plusOne->first_name}}</td>
+						<td class="px-4 py-2 text-black text-left">{{$plusOne->last_name}}</td>
+						<td class="px-4 py-2 text-black text-left capitalize">{{$plusOne->status}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+		@else
+		<p class="mt-3">You currently don't have any plus ones.</p>
+		@endif
+
+		<div class="block mt-6 text-center">
+			<a href="{{url('/plusone')}}" class="bg-indigo-700 rounded px-4 py-3 font-bold text-white hover:bg-indigo-500 transition">Request a plus one</a>
+		</div>
+
 		<h3 class="mt-16 text-3xl text-center font-bold">Your Registration</h3>
 	</div>
 

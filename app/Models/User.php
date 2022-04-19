@@ -46,4 +46,9 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(Token::class);
 	}
+
+	public function plus_ones()
+	{
+		return $this->hasMany(PlusOne::class, 'requester_id');
+	}
 }

@@ -64,7 +64,7 @@ class UserController extends Controller
 	}
 
 	function sendMagicLink(Request $request)
-	{
+	{	
 		$request->validate
 		([
 			'email' => 'required|email'
@@ -74,7 +74,7 @@ class UserController extends Controller
 		{
 			$token = TokenController::generate($user);
 			
-			\Mail::to($user->email)->send(new MagicLinkMail($user->first_name, $token->token));
+			\Mail::to($user->email)->send(new MagicLinkMail($user->first_name, urlencode($token->token) . "/?redir=" . urlencode(session()->get('url.intended'))));
 		}
 		else
 		{
@@ -84,7 +84,7 @@ class UserController extends Controller
 		return view('auth.linkSentConfirmation');
 	}
 
-	function logIn($tokenString)
+	function logIn($tokenString, Request $request)
 	{
 		if ($token = TokenController::find($tokenString))
 		{
@@ -93,7 +93,7 @@ class UserController extends Controller
 				TokenController::markAsUsed($token);
 				\Auth::login($token->user);
 
-				return redirect('/');
+				return redirect($request->input("redir"));
 			}
 			else
 			{
