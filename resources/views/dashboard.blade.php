@@ -20,6 +20,26 @@
 		<h3 class="mt-16 text-3xl text-center font-bold">Your Plus ones</h3>
 
 		@if (Auth::user()->plus_ones->first())
+		<div class="max-w mt-6 overflow-x-auto">
+			<table class="table-auto mx-auto">
+				<thead>
+					<tr>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">First Name</th>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Last Name</th>
+						<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach(Auth::user()->plus_ones as $plusOne)
+					<tr class="even:bg-indigo-100">
+						<td class="px-4 py-2 text-black text-left">{{$plusOne->first_name}}</td>
+						<td class="px-4 py-2 text-black text-left">{{$plusOne->last_name}}</td>
+						<td class="px-4 py-2 text-black text-left capitalize">{{$plusOne->status}}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
 		@else
 		<p class="mt-3">You currently don't have any plus ones.</p>
 		@endif
