@@ -9,7 +9,7 @@ use App\Mail\BookingConfirmationMail;
 
 class UserController extends Controller
 {
-	function index()
+	public static function index()
 	{
 		return User::all();
 	}
