@@ -9,6 +9,13 @@
 
 	<h1 class="text-5xl text-center font-bold mt-16">Register for Jamesday 2022</h1>
 
+	@if ($errors->any())
+	<div class="rounded block mt-12 mb-3 p-4 bg-red-100 max-w-xl mx-auto">Booking not created.</div>
+		@foreach ($errors->all() as $error)
+			<div class="rounded block my-3 p-4 bg-red-100 max-w-xl mx-auto">{{ $error }}</div>
+		@endforeach
+	@endif
+
 	<div class="max-w-xl mx-auto">
 		<h3 class="text-3xl text-center font-bold mt-16">The Details</h3>
 		<p class="mt-3">The Jamesday Celebrations 2022 will be taking place at <span class="font-medium">Subrosa Liverpool</span> in the evening of <span class="font-medium">Saturday 11/06/2022</span>. For those travelling to the event, a variety of accommodation will be available ranging from space on someone's floor (free) to nearby hotels.</p>
