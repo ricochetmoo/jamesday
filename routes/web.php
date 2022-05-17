@@ -37,3 +37,4 @@ Route::get('/admin/invite', function() {return view('admin.invite.new');})->midd
 Route::post('/admin/invite', [InviteController::class, 'generate'])->middleware(['auth', 'admin']);
 Route::get('/admin/plusone/{plusOne}/accept', [PlusOneController::class, 'accept'])->middleware(['auth', 'admin']);
 Route::get('/admin/plusone/{plusOne}/reject', [PlusOneController::class, 'reject'])->middleware(['auth', 'admin']);
+Route::get('/admin/bookings', function() {return view('admin.booking.list')->with('users', UserController::index());})->middleware(['auth', 'admin']);
