@@ -5,10 +5,10 @@
 				Jamesday 2022
 			</h2>
 		</div>
-		<div class="inline-block mr-6">
+		<div class="inline-block mx-3">
 			<a class="font-medium" href="{{url('/')}}">Home</a>
 		</div>
-		<div class="inline-block">
+		<div class="inline-block ml-3">
 			<a class="font-medium" href="{{url('/logout')}}">Log out</a>
 		</div>
 	</x-slot>

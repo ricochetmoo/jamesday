@@ -5,7 +5,15 @@
 				Jamesday 2022
 			</h2>
 		</div>
-		<div class="inline-block">
+		@if (Auth::user()->admin)
+		<div class="inline-block mx-3">
+			<a class="font-medium" href="{{url('/admin/bookings')}}">Bookings</a>
+		</div>
+		<div class="inline-block mx-3">
+			<a class="font-medium" href="{{url('/admin/invites')}}">Invites</a>
+		</div>
+		@endif
+		<div class="inline-block ml-3">
 			<a class="font-medium" href="{{url('/logout')}}">Log out</a>
 		</div>
 	</x-slot>
