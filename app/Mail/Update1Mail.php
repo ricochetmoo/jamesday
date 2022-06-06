@@ -20,11 +20,8 @@ class Update1Mail extends Mailable
      */
     public function __construct($firstName, $token)
     {
-        $this->details =
-        [
-            'first_name' => $firstName,
-            'token' => $token
-        ];
+        $this->first_name = $firstName;
+        $this->token = $token;
     }
 
     /**
@@ -34,6 +31,6 @@ class Update1Mail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Log in to Jamesday')->view('mail.update1')->with('details', $this->details);
+        return $this->subject('[Update] The 2022 Jamesday Celebrations is less than week away!')->view('mail.update1')->with('first_name', $this->first_name)->with('token', $this->token);
     }
 }

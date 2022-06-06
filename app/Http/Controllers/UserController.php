@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Mail\MagicLinkMail;
+use App\Mail\Update1Mail;
 use App\Mail\BookingConfirmationMail;
 
 class UserController extends Controller
@@ -135,5 +136,20 @@ class UserController extends Controller
 		\Auth::logout();
 	
 		return redirect('/');
+	}
+
+	public static function sendUpdateEmail()
+	{
+		$users = User::all();
+
+		foreach($users as $user)
+		{
+			if ($user->booked_on)
+			{
+				$token = TokenController::generate($user); 
+			
+				\Mail::to($user->email)->send(new Update1Mail($user->first_name, urlencode($token->token) . "/?redir=" . \URL('') ));
+			}
+		}
 	}
 }
