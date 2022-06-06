@@ -23,6 +23,11 @@ class CreateUsersTable extends Migration
             $table->integer('can_host')->nullable();
             $table->longText('hosting_details')->nullable();
             $table->string('email')->unique();
+            $table->boolean('needs_accom')->default(0);
+            $table->boolean('needs_parking')->default(0);
+            $table->boolean('spoons_interest')->default(0);
+            $table->boolean('tour_interest')->default(0);
+            $table->boolean('escape_room_interest')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });

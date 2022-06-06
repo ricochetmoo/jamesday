@@ -108,4 +108,12 @@ class UserController extends Controller
 			return view('error')->with('message', "This is not a valid token.");
 		}
 	}
+
+	public static function update($id, Request $request)
+	{
+		$user = User::find($id);
+		$user->update($request->all());	
+
+		return redirect('/');
+	}
 }

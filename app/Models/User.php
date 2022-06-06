@@ -26,6 +26,11 @@ class User extends Authenticatable
 		'coming_from',
 		'can_host',
 		'hosting_details',
+		'needs_accom',
+		'needs_parking',
+		'spoons_interest',
+		'tour_interest',
+		'escape_room_interest',
 	];
 
 	/**

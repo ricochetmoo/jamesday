@@ -25,6 +25,90 @@
 		<p class="mt-3">The Jamesday Celebrations 2022 will be taking place at <span class="font-medium">Subrosa Liverpool</span> in the evening of <span class="font-medium">Saturday 11/06/2022</span>. For those travelling to the event, a variety of accommodation will be available ranging from space on someone's floor (free) to nearby hotels.</p>
 		<p class="mt-2">The venue is conveniently located for both public transport and driving, with parking available minutes away from the venue. Further details about transport logistics will be made avaialable in the coming fortnight.</p>
 
+		<h3 class="mt-16 text-3xl text-center font-bold">Final Details</h3>
+
+		<form action="{{url('/user/' . Auth::user()->id)}}" method="POST">
+		@csrf
+		@method('PUT')
+		<label class="block my-3">
+			<span class="text-gray-700 font-medium">Do you need accommodation?</span><br>
+			<div class="grid md:grid-cols-2 gap-6 my-3">
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="needs_accomYes" name="needs_accom" value="1" @if (Auth::user()->needs_accom) checked @endif>
+					<span class="ml-2">Yes</span>
+				</label>
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="needs_accomNo" name="needs_accom" value="0" @if (!Auth::user()->needs_accom) checked @endif>
+					<span class="ml-2">No</span>
+				</label>
+			</div>
+		</label>
+		<label class="block my-3">
+			<span class="text-gray-700 font-medium">Do you need parking?</span><br>
+			<div class="grid md:grid-cols-2 gap-6 my-3">
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="needs_parkingYes" name="needs_parking" value="1" @if (Auth::user()->needs_parking) checked @endif>
+					<span class="ml-2">Yes</span>
+				</label>
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="needs_parkingNo" name="needs_parking" value="0" @if (!Auth::user()->needs_parking) checked @endif>
+					<span class="ml-2">No</span>
+				</label>
+			</div>
+		</label>
+
+		<h3 class="mt-16 text-3xl text-center font-bold">Activity Interest</h3>
+		<p class="mt-3">We're organising some additional activities around the event, here you can let us know whether you're interested in taking part in them. Saying that you're interested does not commit you to taking part.</p>
+
+		<label class="block my-3">
+			<h4 class="text-2xl font-bold mt-3">Spoons Breakfast</h4>
+			<p class="mt-3">Pretty much what it says on the tin... We'll meet at the Richard John Blackler at about 10:00 on the Sunday and cure our hangovers with a spoons brekfast.</p>
+			<div class="grid md:grid-cols-2 gap-6 my-3">
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="spoons_interestYes" name="spoons_interest" value="1" @if (Auth::user()->spoons_interest) checked @endif>
+					<span class="ml-2">Yes</span>
+				</label>
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="spoons_interestNo" name="spoons_interest" value="0" @if (!Auth::user()->spoons_interest) checked @endif>
+					<span class="ml-2">No</span>
+				</label>
+			</div>
+		</label>
+
+		<label class="block my-3">
+			<h4 class="text-2xl font-bold mt-3">Walking Tour</h4>
+			<p class="mt-3">Come along on a free walking tour, led by James, showing off some of the highlights of Liverpool on the Sunday afternoon.</p>
+			<div class="grid md:grid-cols-2 gap-6 my-3">
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="tour_interestYes" name="tour_interest" value="1" @if (Auth::user()->tour_interest) checked @endif>
+					<span class="ml-2">Yes</span>
+				</label>
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="tour_interestNo" name="tour_interest" value="0" @if (!Auth::user()->tour_interest) checked @endif>
+					<span class="ml-2">No</span>
+				</label>
+			</div>
+		</label>
+
+		<label class="block my-3">
+			<h4 class="text-2xl font-bold mt-3">Escape Room</h4>
+			<p class="mt-3">Do an escape room with others from the event somewhere in Liverpool. Expected cost £10-£15 per person.</p>
+			<div class="grid md:grid-cols-2 gap-6 my-3">
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="escape_room_interestYes" name="escape_room_interest" value="1" @if (Auth::user()->escape_room_interest) checked @endif>
+					<span class="ml-2">Yes</span>
+				</label>
+				<label class="inline-flex items-center">
+					<input type="radio" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" id="escape_room_interestNo" name="escape_room_interest" value="0" @if (!Auth::user()->escape_room_interest) checked @endif>
+					<span class="ml-2">No</span>
+				</label>
+			</div>
+		</label>
+
+		<div class="block mt-6 text-center">
+			<button role="submit" class="bg-indigo-700 rounded px-4 py-2 font-bold text-white hover:bg-indigo-500 transition">Save details and interests</button>
+		</div>
+
 		<h3 class="mt-16 text-3xl text-center font-bold">Your Plus ones</h3>
 
 		@if (Auth::user()->plus_ones->first())
@@ -76,6 +160,10 @@
 			<span class="text-gray-700 font-bold">Can host?</span><br>
 			@if(Auth::user()->can_host) Yes ({{Auth::user()->can_host}}) @else No @endif
 		</p>
+
+		<div class="block mt-6 text-center">
+			<a href="{{url('/plusone')}}" class="bg-red-700 rounded px-4 py-3 font-bold text-white hover:bg-red-500 transition">Cancel Booking</a>
+		</div>
 	</div>
 
 	<div class="max-w-xl mx-auto">

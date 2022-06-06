@@ -32,6 +32,8 @@ Route::post('/auth/register', [UserController::class, 'register']);
 Route::get('/plusone', function() {return view('plusone/request');})->middleware(['auth']);
 Route::post('/plusone', [PlusOneController::class, 'request'])->middleware(['auth']);
 
+Route::put('/user/{id}', [UserController::class, 'update'])->middleware(['auth']);
+
 Route::get('/admin/invites', function() {return view('admin.invite.list')->with('invites', InviteController::index());})->middleware(['auth', 'admin']);
 Route::get('/admin/invite', function() {return view('admin.invite.new');})->middleware(['auth', 'admin']);
 Route::post('/admin/invite', [InviteController::class, 'generate'])->middleware(['auth', 'admin']);
