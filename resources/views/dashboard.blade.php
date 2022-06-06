@@ -162,7 +162,7 @@
 		</p>
 
 		<div class="block mt-6 text-center">
-			<a href="{{url('/plusone')}}" class="bg-red-700 rounded px-4 py-3 font-bold text-white hover:bg-red-500 transition">Cancel Booking</a>
+			<a href="{{url('/user/self/cancel')}}" class="bg-red-700 rounded px-4 py-3 font-bold text-white hover:bg-red-500 transition">Cancel Booking</a>
 		</div>
 	</div>
 

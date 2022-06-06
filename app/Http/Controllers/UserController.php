@@ -74,7 +74,12 @@ class UserController extends Controller
 
 		if ($user = User::where('email', $request->email)->first())
 		{
-			$token = TokenController::generate($user);
+			if (!$user->booked_on)
+			{
+				return view('error')->with('message', "There is no booking with this email address.");
+			}
+			
+			$token = TokenController::generate($user); 
 			
 			\Mail::to($user->email)->send(new MagicLinkMail($user->first_name, urlencode($token->token) . "/?redir=" . urlencode(session()->get('url.intended'))));
 		}
@@ -90,7 +95,11 @@ class UserController extends Controller
 	{
 		if ($token = TokenController::find($tokenString))
 		{
-			if (!$token->used)
+			if (!$token->user->booked_on)
+			{
+				return view('error')->with('message', "This booking does not exist.");
+			}
+			else if (!$token->used)
 			{
 				TokenController::markAsUsed($token);
 				\Auth::login($token->user);
@@ -114,6 +123,17 @@ class UserController extends Controller
 		$user = User::find($id);
 		$user->update($request->all());	
 
+		return redirect('/');
+	}
+
+	public static function cancelSelf()
+	{
+		$user = \Auth::user();
+		$user->booked_on = 0;
+		$user->save();
+
+		\Auth::logout();
+	
 		return redirect('/');
 	}
 }
