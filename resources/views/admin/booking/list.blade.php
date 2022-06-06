@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				@foreach($users as $user)
-				<tr class="even:bg-indigo-100">
+				<tr class="@if ($user->booked_on) even:bg-indigo-100 @else bg-red-200 @endif">
 					<td class="px-4 py-2 text-black text-left">{{$user->first_name}}</td>
 					<td class="px-4 py-2 text-black text-left">{{$user->last_name}}</td>
 					<td class="px-4 py-2 text-black text-left">{{$user->email}}</td>
