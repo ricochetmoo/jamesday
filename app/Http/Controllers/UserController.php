@@ -133,6 +133,8 @@ class UserController extends Controller
 		$user->booked_on = 0;
 		$user->save();
 
+		DiscordBotController::sendMessage(" $request->first_name $request->last_name ($request->email) cancelled booking.");
+
 		\Auth::logout();
 	
 		return redirect('/');
