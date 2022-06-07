@@ -49,7 +49,11 @@
 						<p class="mt-1">{{$user->hosting_details}}</p>
 						@endif
 						<h2 class="text-lg font-bold mt-1">Other Details</h2>
-						<p class="mt-1">Needs accom? @if ($user->needs_accom) Yes @else No @endif &nbsp;&nbsp; Needs parking? @if ($user->needs_parking) Yes @else No @endif &nbsp;&nbsp; Spoons? @if ($user->spoons_interest) Yes @else No @endif &nbsp;&nbsp; Tour? @if ($user->tour_interest) Yes @else No @endif &nbsp;&nbsp; Escape Room? @if ($user->escape_room_interest) Yes @else No @endif
+						<p class="mt-1">Needs accom? @if ($user->needs_accom) Yes @else No @endif</p>
+						<p class="mt-1">Needs parking? @if ($user->needs_parking) Yes @else No @endif</p>
+						<p class="mt-1">Spoons? @if ($user->spoons_interest) Yes @else No @endif</p>
+						<p class="mt-1">Tour? @if ($user->tour_interest) Yes @else No @endif</p>
+						<p class="mt-1 mb-2">Escape Room? @if ($user->escape_room_interest) Yes @else No @endif</p>
 					</td>
 				</tr>
 				@endforeach
