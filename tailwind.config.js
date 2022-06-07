@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: [
     "./resources/**/*.blade.php",
@@ -9,5 +11,9 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    plugin(function({addVariant})
+    {
+      addVariant('threeOfFour', '&:nth-child(4n-1)')
+    })
   ],
 }

@@ -32,7 +32,7 @@
 			</thead>
 			<tbody>
 				@foreach($users as $user)
-				<tr class="@if ($user->booked_on) even:bg-indigo-100 @else bg-red-200 @endif">
+				<tr class="@if ($user->booked_on) threeOfFour:bg-indigo-100 @else bg-red-200 @endif">
 					<td class="px-4 py-2 text-black text-left cursor-grab detailsTrigger" data-target="#details-{{$user->id}}">&#9654;</td>
 					<td class="px-4 py-2 text-black text-left">{{$user->first_name}}</td>
 					<td class="px-4 py-2 text-black text-left">{{$user->last_name}}</td>
@@ -41,7 +41,7 @@
 					<td class="px-4 py-2 text-black text-left">@if($user->can_host) Yes ({{$user->can_host}}) @else No @endif</td>
 					<td class="px-4 py-2 text-black text-left">{{$user->plus_ones->count()}}</td>
 				</tr>
-				<tr class="hidden" id="details-{{$user->id}}">
+				<tr class="threeOfFour:bg-indigo-100 hidden" id="details-{{$user->id}}">
 					<td colspan="7">
 						@if ($user->can_host)
 						<h2 class="text-lg font-bold mt-1">Hosting Notes</h2>
