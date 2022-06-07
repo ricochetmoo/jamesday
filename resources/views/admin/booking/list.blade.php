@@ -15,7 +15,8 @@
 
 	<h1 class="text-5xl text-center font-bold mt-6">Bookings</h1>
 
-	<p class="text-xl text-center font-semibold mt-3">Total bookings: {{$users->count()}}
+	<p class="text-xl text-center font-semibold mt-3">Total bookings: {{$users->where('booked_on', 1)->count()}}</p>
+	<p class="text-lg text-center">(plus {{$users->where('booked_on', 0)->count()}} cancelled)</p>
 
 	<div class="max-w mt-6 overflow-x-auto">
 		<table class="table-auto mx-auto">
