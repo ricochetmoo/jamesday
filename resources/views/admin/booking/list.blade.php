@@ -22,25 +22,25 @@
 		<table class="table-auto mx-auto">
 			<thead>
 				<tr>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700"></th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">First Name</th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Last Name</th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Email</th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Travelling from</th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Can host?</th>
-					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700">Plus-ones</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap"></th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">First Name</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">Last Name</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">Email</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">Travelling from</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">Can host?</th>
+					<th class="px-4 py-2 text-black text-left border-b-4 border-indigo-700 whitespace-nowrap">Plus-ones</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($users as $user)
 				<tr class="@if ($user->booked_on) threeOfFour:bg-indigo-100 @else bg-red-200 @endif">
 					<td class="px-4 py-2 text-black text-left cursor-grab detailsTrigger" data-target="#details-{{$user->id}}">&#9654;</td>
-					<td class="px-4 py-2 text-black text-left">{{$user->first_name}}</td>
-					<td class="px-4 py-2 text-black text-left">{{$user->last_name}}</td>
-					<td class="px-4 py-2 text-black text-left">{{$user->email}}</td>
-					<td class="px-4 py-2 text-black text-left">{{$user->coming_from}}</td>
-					<td class="px-4 py-2 text-black text-left">@if($user->can_host) Yes ({{$user->can_host}}) @else No @endif</td>
-					<td class="px-4 py-2 text-black text-left">{{$user->plus_ones->count()}}</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">{{$user->first_name}}</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">{{$user->last_name}}</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">{{$user->email}}</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">{{$user->coming_from}}</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">@if($user->can_host) Yes ({{$user->can_host}}) @else No @endif</td>
+					<td class="px-4 py-2 text-black text-left whitespace-nowrap">{{$user->plus_ones->count()}}</td>
 				</tr>
 				<tr class="threeOfFour:bg-indigo-100 hidden" id="details-{{$user->id}}">
 					<td colspan="7">
