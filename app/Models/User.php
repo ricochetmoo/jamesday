@@ -31,6 +31,7 @@ class User extends Authenticatable
 		'spoons_interest',
 		'tour_interest',
 		'escape_room_interest',
+		'badge'
 	];
 
 	/**
