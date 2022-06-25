@@ -23,15 +23,20 @@
 	<div class="max-w-xl mx-auto">
 		<h3 class="text-3xl text-center font-bold mt-16">Badges</h3>
 		<p class="mt-3">Get your <span class="font-medium">free</span> Jamesday 2022 badge now!</p>
-		<div id="card"></div>
+		<p class="mt-3">Press the button to request a badge. Collection is free from me (at some point), or you can pay £1 for UK delivery - please get in touch with me to arrange this.</p>
 
-		<div class="text-center">
-			<button role="submit" id="cardButton" class="bg-indigo-700 rounded px-4 py-2 font-bold text-white hover:bg-indigo-500 transition">Pay</button>
-		</div>
-
-		<form action="payment" method="POST">
+		@if (!Auth::user()->badge)
+		<form action="{{url('/user/self/badge')}}" method="POST">
 			@csrf
+			<div class="block mt-6 text-center">
+				<button role="submit" class="bg-indigo-700 rounded px-4 py-2 font-bold text-white hover:bg-indigo-500 transition">Request badge</button>
+			</div>
 		</form>
+		@else
+		<div class="block mt-6 text-center">
+			<p class="mt-3 font-medium">Badge requested!</p>
+		</div>
+		@endif
 
 		<h3 class="text-3xl text-center font-bold mt-16">The Details</h3>
 		<p class="mt-3">The Jamesday Celebrations 2022 will be taking place at <span class="font-medium">Subrosa Liverpool</span> in the evening of <span class="font-medium">Saturday 11/06/2022</span>. For those travelling to the event, a variety of accommodation will be available ranging from space on someone's floor (free) to nearby hotels.</p>
@@ -181,111 +186,4 @@
 	<div class="max-w-xl mx-auto">
 		<p class="mt-9">Please get in touch with James (<a href="mailto:james@jamesbarber.tech" class="text-indigo-700 hover:underline decoration-dashed">james@jamesbarber.tech</a>) to update your registration.</p>
 	</div>
-
-	<script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
-<script>
-	async function initialiseCard(payments)
-	{
-		const card = await payments.card();
-		await card.attach('#card');
-		
-		return card;
-	}
-
-	async function tokenise(paymentMethod)
-	{
-		const tokenResult = await paymentMethod.tokenize();
-
-		if (tokenResult.status === 'OK')
-		{
-			
-			return tokenResult.token;
-		}
-	}
-	
-	async function verifyBuyer(payments, token)
-	{
-		const verificationDetails =
-		{
-			amount: '1.00',
-			billingContact:
-			{
-				city: undefined,
-				countryCode: undefined,
-				email: undefined,
-				familyName: undefined,
-				givenName: undefined,
-				phone: undefined,
-				postalCode: undefined,
-				state: undefined,
-				addressLines: [],
-			},
-			currencyCode: 'GBP',
-			intent: "CHARGE",
-		};
-
-		const verificationResults = await payments.verifyBuyer(token, verificationDetails);
-
-		return verificationResults.token;
-	}
-	
-	document.addEventListener('DOMContentLoaded', async function ()
-	{
-		if(!window.Square)
-		{
-			console.error('Square.js failed to load properly.');
-		}
-
-		let payments;
-
-		try
-		{
-			
-		}
-		catch (error)
-		{
-			console.erorr(error);
-			return;
-		}
-
-		let card;
-
-		try
-		{
-			card = await initialiseCard(payments);
-		}
-		catch (error)
-		{
-			console.error("Initailising Card failed", error);
-			return;
-		}
-
-		async function handlePaymentMethodSubmission(event, paymentMethod, shouldVerify = false)
-		{
-			event.preventDefault();
-			try
-			{
-				cardButton.disabled = true;
-				const token = await tokenise(paymentMethod);
-				let verificationToken;
-	
-				if (shouldVerify)
-				{
-					verificationToken = await verifyBuyer(payments, token);
-				}
-	
-				console.log(verificationToken);
-			}
-			catch (error)
-			{
-				cardButton.disabled = false;
-				console.error(error.message);
-			}
-
-		}
-
-		const cardButton = document.querySelector("#cardButton");
-		cardButton.addEventListener('click', async function (event) {handlePaymentMethodSubmission(event, card, true)});
-	});
-</script>
 </x-app-layout>
