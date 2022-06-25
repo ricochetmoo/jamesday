@@ -31,6 +31,6 @@ class Update1Mail extends Mailable
      */
     public function build()
     {
-        return $this->subject('[Update] The 2022 Jamesday Celebrations is less than week away!')->view('mail.update2')->with('first_name', $this->first_name)->with('token', $this->token);
+        return $this->subject('Jamesday 2022 Photos and Badges')->view('mail.update3')->with('first_name', $this->first_name)->with('token', $this->token);
     }
 }
