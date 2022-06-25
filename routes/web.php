@@ -34,6 +34,7 @@ Route::post('/plusone', [PlusOneController::class, 'request'])->middleware(['aut
 
 Route::put('/user/{id}', [UserController::class, 'update'])->middleware(['auth']);
 Route::get('/user/self/cancel', [UserController::class, 'cancelSelf'])->middleware(['auth']);
+Route::post('/user/self/badge', [UserController::class, 'requestBadgeForSelf'])->middleware(['auth']);
 
 Route::get('/admin/invites', function() {return view('admin.invite.list')->with('invites', InviteController::index());})->middleware(['auth', 'admin']);
 Route::get('/admin/invite', function() {return view('admin.invite.new');})->middleware(['auth', 'admin']);

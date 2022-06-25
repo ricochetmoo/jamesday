@@ -154,4 +154,13 @@ class UserController extends Controller
 			}
 		}
 	}
+
+	public static function requestBadgeForSelf()
+	{
+		$user = \Auth::user();
+		$user->badge = 1;
+		$user->save();
+
+		return redirect('/');
+	}
 }
